@@ -59,3 +59,18 @@ logs/
 .coverage
 htmlcov/
 .pytest_cache/
+
+# Video files (use YouTube/Google Drive for demo videos)
+*.mp4
+*.mov
+*.avi
+*.mkv
+demo/
+
+# Generated HTML artifacts
+*.html
+
+# Python bytecode (in case __pycache__ slips through)
+**/__pycache__/
+**/*.pyc
+**/*.pyo
