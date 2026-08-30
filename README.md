@@ -50,7 +50,7 @@ NASA APIs (DSCOVR / POWER)
 **Models & Technologies used:**
 
 | Component | Technology |
-|---|---|
+| --- | --- |
 | Anomaly Detection | scikit-learn `IsolationForest` |
 | NL Explanation & Q&A | IBM Granite via watsonx.ai |
 | Dashboard | Streamlit + Plotly |
@@ -65,6 +65,7 @@ NASA APIs (DSCOVR / POWER)
 **Advance Space Exploration with AI** — August 2026 IBM AI Builders Challenge.
 
 OrbitIQ directly addresses the challenge theme by:
+
 - Transforming raw mission telemetry into **actionable, insight-driven alerts**
 - Improving **mission safety and reliability** through early anomaly detection
 - Making **complex space data accessible** to both engineers and the general public via natural language
@@ -102,7 +103,7 @@ Dev Tool:    IBM Bob
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/<your-username>/orbitiq.git
+git clone https://github.com/fsamura01/orbitiq.git
 cd orbitiq
 ```
 
@@ -182,17 +183,7 @@ orbitiq/
 
 ## Demo
 
-> 📹 Demo video link will be added before the August 31 submission deadline.
-
----
-
-## Team
-
-| Name | Role |
-|---|---|
-| *(your name here)* | Developer / AI Engineer |
-
----
+[ObitIQ](https://youtu.be/T2VVwf6kefY)
 
 ## License
 
