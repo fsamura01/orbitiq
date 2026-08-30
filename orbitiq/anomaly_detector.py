@@ -1,4 +1,4 @@
-﻿"""
+"""
 anomaly_detector.py -- Isolation Forest anomaly detection for telemetry.
 
 Usage:
@@ -11,7 +11,7 @@ Usage:
 from __future__ import annotations
 
 import logging
-from typing import List, Optional
+from typing import List, Optional, Union, cast
 
 import numpy as np
 import pandas as pd
@@ -38,7 +38,7 @@ class AnomalyDetector:
     def __init__(
         self,
         features: Optional[List[str]] = None,
-        contamination: float = 0.05,
+        contamination: Union[float, str] = 0.05,
         n_estimators: int = 200,
         random_state: int = 42,
     ) -> None:
@@ -46,7 +46,7 @@ class AnomalyDetector:
         self._scaler = StandardScaler()
         self._model = IsolationForest(
             n_estimators=n_estimators,
-            contamination=contamination,
+            contamination=contamination,  # type: ignore[arg-type]
             random_state=random_state,
         )
         self._fitted = False
@@ -85,7 +85,7 @@ class AnomalyDetector:
         missing = [c for c in self.features if c not in df.columns]
         if missing:
             raise ValueError(f"DataFrame missing required columns: {missing}")
-        return df[self.features].dropna()
+        return cast(pd.DataFrame, df[self.features].dropna())
 
     def _assert_fitted(self) -> None:
         if not self._fitted:

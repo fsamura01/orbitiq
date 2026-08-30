@@ -1,0 +1,325 @@
+
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>OrbitIQ — Project Explainer</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #0d1117; color: #e6edf3; line-height: 1.6; }
+  .hero { background: linear-gradient(135deg, #1a2744 0%, #0d1117 60%); padding: 48px 40px 36px; border-bottom: 1px solid #21262d; }
+  .hero h1 { font-size: 2rem; font-weight: 700; color: #58a6ff; margin-bottom: 8px; }
+  .hero p { color: #8b949e; font-size: 1rem; max-width: 680px; }
+  .badge { display: inline-block; background: #21262d; border: 1px solid #30363d; border-radius: 20px; padding: 3px 12px; font-size: 0.75rem; color: #79c0ff; margin: 4px 4px 0 0; }
+  .container { max-width: 960px; margin: 0 auto; padding: 32px 40px; }
+  h2 { font-size: 1.25rem; font-weight: 700; color: #f0f6fc; margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 1px solid #21262d; }
+  h3 { font-size: 1rem; font-weight: 600; color: #79c0ff; margin: 20px 0 8px; }
+  p { color: #c9d1d9; margin-bottom: 10px; font-size: 0.92rem; }
+
+  /* One-liner box */
+  .oneliner { background: #161b22; border: 1px solid #58a6ff44; border-left: 4px solid #58a6ff; border-radius: 8px; padding: 20px 24px; margin: 20px 0; font-size: 1rem; color: #e6edf3; }
+  .oneliner strong { color: #58a6ff; }
+
+  /* Page cards grid */
+  .pages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 16px 0; }
+  .page-card { background: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 20px; }
+  .page-card .icon { font-size: 1.8rem; margin-bottom: 10px; }
+  .page-card h4 { font-size: 0.9rem; font-weight: 700; color: #f0f6fc; margin-bottom: 6px; }
+  .page-card p { font-size: 0.82rem; color: #8b949e; margin: 0; }
+  .page-card .tag { display: inline-block; margin-top: 10px; background: #1f2d3d; border-radius: 4px; padding: 2px 8px; font-size: 0.72rem; color: #79c0ff; }
+
+  /* Architecture flow */
+  .arch { background: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 24px; margin: 16px 0; font-family: "Courier New", monospace; font-size: 0.82rem; color: #8b949e; line-height: 2; overflow-x: auto; }
+  .arch .highlight { color: #58a6ff; font-weight: bold; }
+  .arch .green { color: #3fb950; }
+  .arch .orange { color: #d29922; }
+  .arch .pink { color: #f778ba; }
+
+  /* Stack pills */
+  .stack { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+  .pill { background: #21262d; border: 1px solid #30363d; border-radius: 6px; padding: 5px 14px; font-size: 0.8rem; color: #c9d1d9; }
+  .pill.blue { border-color: #1f6feb; color: #79c0ff; }
+  .pill.green { border-color: #238636; color: #3fb950; }
+  .pill.orange { border-color: #9e6a03; color: #e3b341; }
+  .pill.purple { border-color: #6e40c9; color: #d2a8ff; }
+
+  /* Demo script */
+  .demo-step { display: flex; gap: 16px; margin: 16px 0; align-items: flex-start; }
+  .step-num { min-width: 32px; height: 32px; background: #1f6feb; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; color: white; flex-shrink: 0; margin-top: 2px; }
+  .step-body h4 { font-size: 0.9rem; font-weight: 700; color: #f0f6fc; margin-bottom: 4px; }
+  .step-body p { font-size: 0.85rem; color: #8b949e; margin: 0; }
+  .step-body .say { background: #1c2d1e; border-left: 3px solid #3fb950; border-radius: 0 6px 6px 0; padding: 8px 12px; margin-top: 8px; font-size: 0.82rem; color: #aff5b4; font-style: italic; }
+
+  /* Judging criteria */
+  .criteria-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin: 16px 0; }
+  .criterion { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 16px; }
+  .criterion .score { font-size: 1.4rem; font-weight: 700; color: #3fb950; }
+  .criterion h4 { font-size: 0.82rem; font-weight: 700; color: #f0f6fc; margin: 4px 0; }
+  .criterion p { font-size: 0.75rem; color: #8b949e; margin: 0; }
+
+  /* Key talking points */
+  .talking { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 20px 24px; margin: 12px 0; }
+  .talking li { color: #c9d1d9; font-size: 0.85rem; margin: 8px 0 8px 16px; }
+  .talking li strong { color: #e3b341; }
+
+  /* Data flow table */
+  table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.85rem; }
+  th { background: #161b22; color: #8b949e; font-weight: 600; text-align: left; padding: 10px 14px; border-bottom: 1px solid #30363d; }
+  td { padding: 10px 14px; border-bottom: 1px solid #21262d; color: #c9d1d9; vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  td:first-child { color: #79c0ff; font-weight: 600; }
+
+  footer { text-align: center; padding: 32px; color: #484f58; font-size: 0.8rem; border-top: 1px solid #21262d; margin-top: 40px; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>🛸 OrbitIQ — Project Explainer &amp; Demo Script</h1>
+  <p>Everything you need to understand, explain, and demo OrbitIQ confidently to judges and audiences.</p>
+  <div style="margin-top:16px">
+    <span class="badge">IBM AI Builders Challenge</span>
+    <span class="badge">August 2026</span>
+    <span class="badge">Advance Space Exploration with AI</span>
+    <span class="badge">Built with IBM Bob</span>
+  </div>
+</div>
+
+<div class="container">
+
+  
+  <h2>🎯 What is OrbitIQ? (The One-Liner)</h2>
+  <div class="oneliner">
+    OrbitIQ is an <strong>AI-powered mission health dashboard</strong> that pulls live NASA satellite telemetry,
+    automatically detects anomalies using machine learning, and explains what's wrong — in plain English —
+    using <strong>IBM Granite</strong>.
+  </div>
+  <p>Think of it as a <strong>"check engine light" for spacecraft</strong> — but instead of a vague warning, it tells you exactly what the reading means and what the mission risk is.</p>
+
+  
+  <h2>🚨 The Problem It Solves</h2>
+  <p>Space missions generate thousands of sensor readings every minute. Today, engineers either:</p>
+  <ul style="margin:8px 0 12px 20px;color:#c9d1d9;font-size:0.9rem">
+    <li style="margin:6px 0">Watch dashboards manually — slow, exhausting, error-prone</li>
+    <li style="margin:6px 0">Use rigid threshold rules — miss subtle compound anomalies</li>
+    <li style="margin:6px 0">Receive raw data dumps — with no plain-English explanation of risk</li>
+  </ul>
+  <p>Historical failures like <strong>Mars Climate Orbiter</strong> and <strong>Challenger</strong> trace back to missed signals in data that was available but not acted on in time. OrbitIQ addresses this gap directly.</p>
+
+  
+  <h2>📄 The 4 Pages — What Each One Does</h2>
+  <div class="pages-grid">
+    <div class="page-card">
+      <div class="icon">🏠</div>
+      <h4>Home (streamlit app)</h4>
+      <p>Landing page showing system status: data source, model state, AI engine, and overall health.</p>
+      <span class="tag">Entry point</span>
+    </div>
+    <div class="page-card">
+      <div class="icon">📡</div>
+      <h4>Mission Overview</h4>
+      <p>Live charts of solar wind speed, proton density, and IMF Bz. Shows 3,700+ real readings refreshed every 5 minutes.</p>
+      <span class="tag">Live NASA data</span>
+    </div>
+    <div class="page-card">
+      <div class="icon">⚠️</div>
+      <h4>Anomaly Alerts</h4>
+      <p>ML model scores every reading. Shows 48 flagged anomalies with a scatter chart and a data table. Tunable threshold slider.</p>
+      <span class="tag">ML detection</span>
+    </div>
+    <div class="page-card">
+      <div class="icon">💬</div>
+      <h4>Ask OrbitIQ (NL Query)</h4>
+      <p>Type any question in plain English. IBM Granite answers using live telemetry as context — no SQL, no charts needed.</p>
+      <span class="tag">IBM Granite AI</span>
+    </div>
+  </div>
+
+  
+  <h2>🏗️ How It Works — Architecture</h2>
+  <div class="arch">
+<span class="green">┌─────────────────────────────────────┐</span>
+<span class="green">│         NASA / NOAA Open APIs        │</span>
+<span class="green">│  DSCOVR solar wind · POWER API       │</span>
+<span class="green">└──────────────┬──────────────────────┘</span>
+               │  HTTP (free, no auth)
+               ▼
+<span class="highlight">  data_loader.py</span>  ← fetch + normalise + merge plasma &amp; mag streams
+               │
+               ▼
+<span class="orange">  anomaly_detector.py</span>  ← IsolationForest trained on live data
+               │                    scores every reading 0.0 → 1.0
+               ├──────────── anomaly_score, is_anomaly columns
+               │
+               ▼
+<span class="pink">  granite_client.py</span>  ← IBM Granite via watsonx.ai
+               │         explain_anomaly()  |  answer_question()
+               │
+               ▼
+<span class="highlight">  Streamlit Dashboard</span>  ← 4 pages, Plotly charts, live metrics
+  app/streamlit_app.py
+  app/pages/01_Mission_Overview.py
+  app/pages/02_Anomaly_Alerts.py
+  app/pages/03_NL_Query.py
+  </div>
+
+  
+  <h2>🔧 Component Breakdown</h2>
+  <table>
+    <thead>
+      <tr><th>Component</th><th>File</th><th>What it does</th><th>Tech</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Data Loader</td>
+        <td>orbitiq/data_loader.py</td>
+        <td>Fetches live solar wind plasma + magnetic field from NOAA RTSW API. Merges two streams on timestamps. Returns a clean DataFrame.</td>
+        <td>requests, pandas</td>
+      </tr>
+      <tr>
+        <td>Anomaly Detector</td>
+        <td>orbitiq/anomaly_detector.py</td>
+        <td>Trains an Isolation Forest on the live data itself. Scores every reading from 0 (normal) to 1 (highly anomalous). Flags readings above a configurable threshold.</td>
+        <td>scikit-learn, numpy</td>
+      </tr>
+      <tr>
+        <td>Granite Client</td>
+        <td>orbitiq/granite_client.py</td>
+        <td>Sends anomaly stats or operator questions to IBM Granite. Returns plain-English explanations. Has retry logic for rate limits.</td>
+        <td>ibm-watsonx-ai, IBM Granite</td>
+      </tr>
+      <tr>
+        <td>Charts</td>
+        <td>app/components/charts.py</td>
+        <td>Reusable Plotly helpers: time_series_chart() for trend lines, anomaly_score_chart() for the red/blue scatter with threshold line.</td>
+        <td>Plotly</td>
+      </tr>
+      <tr>
+        <td>Dashboard</td>
+        <td>app/streamlit_app.py + pages/</td>
+        <td>4-page Streamlit app. Live metrics, interactive charts, anomaly table, and the NL Q&amp;A interface.</td>
+        <td>Streamlit</td>
+      </tr>
+      <tr>
+        <td>Tests</td>
+        <td>tests/test_anomaly_detector.py</td>
+        <td>6 unit tests validating score ranges, predict types, error handling, and threshold sensitivity. All passing.</td>
+        <td>pytest</td>
+      </tr>
+    </tbody>
+  </table>
+
+  
+  <h2>🛠️ Tech Stack</h2>
+  <div class="stack">
+    <span class="pill blue">IBM Bob (primary dev tool)</span>
+    <span class="pill purple">IBM Granite via watsonx.ai</span>
+    <span class="pill green">NASA DSCOVR / NOAA RTSW API</span>
+    <span class="pill green">NASA POWER API</span>
+    <span class="pill orange">scikit-learn IsolationForest</span>
+    <span class="pill">Streamlit 1.62</span>
+    <span class="pill">Plotly 6.9</span>
+    <span class="pill">pandas + numpy</span>
+    <span class="pill">Python 3.11</span>
+    <span class="pill">uv (package manager)</span>
+    <span class="pill">pytest (6 tests ✅)</span>
+  </div>
+
+  
+  <h2>🎬 3-Minute Demo Script</h2>
+  <p style="margin-bottom:20px;color:#8b949e">Use this structure for your video recording or live presentation. Each step maps to one screenshot you already have.</p>
+
+  <div class="demo-step">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <h4>Home Page — Set the Scene (30 sec)</h4>
+      <p>Show the home page. Point to the 4 status metrics at the bottom.</p>
+      <div class="say">"This is OrbitIQ — a mission health intelligence platform. It's pulling live NASA satellite data right now, running machine learning anomaly detection, and using IBM Granite to explain what it finds in plain English. You can see the data source is live, the model is ready, and the AI engine is connected to watsonx."</div>
+    </div>
+  </div>
+
+  <div class="demo-step">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <h4>Mission Overview — Show Real Data (40 sec)</h4>
+      <p>Navigate to Mission Overview. Point to the 4 metric tiles, then scroll through the 3 charts.</p>
+      <div class="say">"We're looking at 3,700+ real readings from NASA's DSCOVR satellite — solar wind speed, proton density, and the IMF Bz magnetic field component. Notice those sharp spikes in the Bz chart — those negative dips are exactly the kind of event that can trigger geomagnetic storms and disrupt spacecraft systems. This data refreshes every 5 minutes automatically."</div>
+    </div>
+  </div>
+
+  <div class="demo-step">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <h4>Anomaly Alerts — The ML Detection (60 sec)</h4>
+      <p>Navigate to Anomaly Alerts. Point to the 3 summary metrics, the scatter chart, then the table.</p>
+      <div class="say">"Out of 3,718 telemetry records, our Isolation Forest model flagged 48 anomalies — that's about 1.3% of the data. The scatter chart shows normal readings in blue and anomalous events in red. The table lists each one ranked by anomaly score. Now watch this — I'll click 'Explain top anomaly with IBM Granite'..."</div>
+      <p style="margin-top:8px;color:#8b949e"><em>→ Click the button. Wait for Granite response. Read it aloud.</em></p>
+      <div class="say">"IBM Granite just read those raw numbers and produced a human-readable mission impact statement. That's the core of what OrbitIQ does — it bridges the gap between raw sensor data and actionable insight."</div>
+    </div>
+  </div>
+
+  <div class="demo-step">
+    <div class="step-num">4</div>
+    <div class="step-body">
+      <h4>Ask OrbitIQ — Natural Language Q&amp;A (40 sec)</h4>
+      <p>Navigate to NL Query. Expand the context panel briefly. Type a question and submit.</p>
+      <div class="say">"Finally — Ask OrbitIQ. Instead of reading charts, a mission engineer can just ask a question in plain English. I'll ask: 'Is there any geomagnetic storm risk in the next few hours?' — IBM Granite reads the live telemetry context and answers directly. No SQL, no chart-reading required. This is what 'insight-driven' space exploration looks like."</div>
+    </div>
+  </div>
+
+  <div class="demo-step">
+    <div class="step-num">5</div>
+    <div class="step-body">
+      <h4>Wrap Up (10 sec)</h4>
+      <div class="say">"OrbitIQ was built entirely with IBM Bob as the primary development tool — from architecture design and code generation to debugging and documentation. The full source code is on GitHub. Thank you."</div>
+    </div>
+  </div>
+
+  
+  <h2>🏆 How OrbitIQ Scores on Each Judging Criterion</h2>
+  <div class="criteria-grid">
+    <div class="criterion">
+      <div class="score">✅</div>
+      <h4>Technical Execution</h4>
+      <p>Working prototype, live API data, ML model, IBM Granite integration, 6 passing tests, clean code</p>
+    </div>
+    <div class="criterion">
+      <div class="score">✅</div>
+      <h4>Innovation</h4>
+      <p>Combines unsupervised ML + LLM explainability on real-time space data — not a chatbot, not a static dashboard</p>
+    </div>
+    <div class="criterion">
+      <div class="score">✅</div>
+      <h4>Challenge Fit</h4>
+      <p>Directly quotes the challenge: "data-heavy to insight-driven systems". Uses NASA data, addresses mission safety</p>
+    </div>
+    <div class="criterion">
+      <div class="score">✅</div>
+      <h4>Feasibility</h4>
+      <p>Fully working demo, free NASA APIs, open-source stack. Can run locally or deploy to Streamlit Cloud</p>
+    </div>
+    <div class="criterion">
+      <div class="score">✅</div>
+      <h4>Real-World Impact</h4>
+      <p>Addresses a real gap in mission ops. Same anomaly detection approach used in professional space weather monitoring</p>
+    </div>
+  </div>
+
+  
+  <h2>💡 Key Talking Points to Memorise</h2>
+  <div class="talking">
+    <ul>
+      <li><strong>"Real data, not synthetic"</strong> — Every reading shown comes from an actual NASA/NOAA satellite feed, live.</li>
+      <li><strong>"Two AI layers"</strong> — Isolation Forest for detection + IBM Granite for explanation. Most projects only use one.</li>
+      <li><strong>"Built with IBM Bob"</strong> — Architecture, all module code, debugging, docs — every step used IBM Bob.</li>
+      <li><strong>"The threshold is tunable"</strong> — The sensitivity slider on Anomaly Alerts means operators can adapt it to mission criticality.</li>
+      <li><strong>"Plain English = accessible"</strong> — The NL Query page means non-engineers (policy makers, the public) can query space data.</li>
+      <li><strong>"The problem is real"</strong> — Mars Climate Orbiter was lost because of a data mismatch nobody caught in time. OrbitIQ addresses exactly this kind of gap.</li>
+    </ul>
+  </div>
+
+</div>
+
+<footer>OrbitIQ · IBM AI Builders Challenge · August 2026 · Built with IBM Bob</footer>
+</body>
+</html>
