@@ -1,4 +1,8 @@
-# OrbitIQ 🛰️
+<p align="center">
+  <img src="assets/logo.png" alt="OrbitIQ Logo" width="100" height="100"/>
+</p>
+
+# OrbitIQ 🛸
 
 > **AI-Powered Spacecraft Anomaly Detection & Mission Risk Intelligence**
 >
